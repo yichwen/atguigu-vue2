@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- v-if v-else会移除element-->
+    <p v-if="ok">成功了</p>
+    <p v-else>失败了</p>
+
+    <!-- v-show通过display:none隐藏element-->
+    <p v-show="ok">表白成功</p>
+    <p v-show="!ok">表白失败</p>
+    <button @click="ok=!ok">切换</button>
+ </div>
+  <script src="js/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        ok: false
+      },
+    });
+ </script>
+</body>

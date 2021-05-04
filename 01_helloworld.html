@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <div id="app" style="margin: 10px;">
+    <input type="text" v-model="username">
+    <p>Hello, {{username}}</p>
+  </div>
+  
+  <script src="js/vue.js"></script>
+  <script>
+    // Vue是一个vue.js库提供的构建函数
+    const vm = new Vue({ // 配置对象（属性名必须是指定的一些名称）
+      el: '#app', // element:选择器字符串 表明将页面哪个元素交给Vue管理
+      data: {
+        username: 'atguigu'
+      }
+    })
+  </script>
+  <!-- 
+    MVVM: Model(模型，数据对象), View(视图), ModelView (视图模型 Vue的实例)
+  -->
+</body>
+</html>

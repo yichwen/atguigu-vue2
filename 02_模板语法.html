@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h2>1. 双大括号表达式</h2>
+    <p>{{msg}}</p> <!-- textContent -->
+    <p>{{msg.toUpperCase()}}</p>
+    <p v-text="code"></p> <!-- textContent -->
+    <p v-html="code"></p> <!-- innerHTML -->
+
+    <h2>2. 指令一：强制数据绑定</h2>
+    <ul>
+      <li><a href="url" target="_blank">访问指定站点1（不能使用）</a></li>
+      <li><a v-bind:href="url" target="_blank">访问指定站点2</a></li>
+      <li><a :href="url" target="_blank">访问指定站点3</a></li>
+    </ul>
+
+    <h2>3. 指令二：绑定事件监听</h2>
+    <button v-on:click="handleClick">点我</button>
+    <button @click="handleClick">点我</button>
+  </div>
+  <script src="js/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        msg: 'NBA I love this game!',
+        code: '<a href="https://www.google.com">Google</a>',
+        url: 'https://www.google.com'
+      },
+      methods: {
+        handleClick() {
+          alert('处理点击')
+        }
+      }
+    });
+  </script>
+</body>

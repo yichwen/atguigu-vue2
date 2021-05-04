@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .aClass {
+      color: red;
+    }
+    .bClass {
+      color: blue;
+    }
+    .cClass {
+      font-size: 25px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+
+    <h2>1. class 绑定: :class='xxx'</h2>
+    <!-- a variable is reference to a class name -->
+    <p :class="a">表达式是字符串: 'classA'</p>
+    <!-- use isA and isB variables to control to add in the class -->
+    <p :class="{aClass: isA, bClass: isB}">表达式是对象: {classA:isA, classB: isB}</p>
+    <p :class="['aClass', 'cClass']">表达式是数组: ['classA', 'classB']</p>
+
+    <h2>2. style 绑定</h2>
+    <p :style="{color: activeColor, fontSize: fontSize + 'px'}">style</p>
+
+    <button @click="update">更新</button>
+ </div>
+ <script src="js/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        a: 'aClass',
+        isA: true,
+        isB: false,
+        activeColor: 'red',
+        fontSize: 20,
+      },
+      methods: {
+        update() {
+          this.a = 'bClass'
+          this.isA = !this.isA
+          this.isB = !this.isB,
+          this.activeColor = 'green'
+          this.fontSize = 30
+        }
+      }
+    });
+ </script>
+</body>
