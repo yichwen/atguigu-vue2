@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+
+    <h2>1. 绑定监听</h2>
+    <button @click="test1">test1</button>
+    <button @click="test2('atguigu')">test2</button>
+    <button @click="test3">test3</button>
+    <button @click="test4(123, $event)">test4</button>
+
+    <h2>2. 事件修饰符</h2>
+    <!-- 阻止事件默认行为 @click.prevent -->
+    <a href="https://www.google.com" @click.prevent="test7">去谷歌</a>
+    <!-- 停止事件冒泡 @click.stop -->
+    <div style="width:200px;height:200px;background:red;" @click="test5">
+      <div style="width:100px;height:100px;background:blue;" @click.stop="test6"></div>
+    </div>
+
+    <h2>3. 按键修饰符</h2>
+    <input type="text" @keyup.13="test8">
+    <input type="text" @keyup.enter="test8">
+
+  </div>
+  <script src="js/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+
+      },
+      methods: {
+        test1() {
+          alert('test1')
+        },
+        test2(msg) {
+          alert(msg)
+        },
+        // 如果没有参数，系统会提供$event为第一个参数
+        test3(event) {
+          alert(event.target.innerHTML)
+        },
+        test4(number, event) {
+          alert(number + '---' + event.target.innerHTML)
+        },
+        test5() {
+          alert('out')
+        },
+        test6() {
+          // event.stopPropagation() --> use @click.stop
+          alert('in')
+        },
+        test7() {
+          // event.preventDefault() --> use @click.prevent
+          alert('clicked')
+        },
+        test8(event) {
+          // keyCode 13 is enter    --> use @keyup.enter
+          // if (event.keyCode === 13) {
+          //   alert(event.target.value)
+          // }
+          alert(event.target.value)
+        }
+      }
+    });
+  </script>
+</body>

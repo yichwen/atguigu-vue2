@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <button @click="destroyVM">destroy vue</button>
+    <p v-show="isShow">尚硅谷IT教育</p>
+  </div>
+  <script src="js/vue.js"></script>
+  <script>
+    // mounted(): 发送ajax 请求, 启动定时器等异步任务
+    // beforeDestory(): 做收尾工作, 如: 清除定时器
+    new Vue({
+      el: '#app',
+      data: {
+        isShow: true
+      },
+      // 初始化阶段
+      beforeCreate() {
+        console.log('beforeCreate()')
+      },
+      created() {
+        console.log('created()')
+      },
+      beforeMount() {
+        console.log('beforeMount()')
+      },
+      mounted() {  // 初始化显示之后立即调用（1次）
+        console.log('mounted()')
+        // 使用箭头函数，因为箭头函数没有this的，所以会使用外部的this那就说vm
+        this.intervalId = setInterval(() => {
+          console.log('-----------')
+          this.isShow = !this.isShow
+        }, 1000)
+      },
+      // 更新阶段
+      beforeUpdate() {
+        console.log('beforeUpdate()')
+      },
+      updated() {
+        console.log('updated()')
+      },
+      // 销毁阶段
+      beforeDestroy() {  // 死亡之前调用（1次）
+        console.log('beforeDestroy()')
+        // 清除定时器，如果没有清除，定时器在vm死亡后，任然继续执行
+        clearInterval(this.intervalId);
+      },
+      destroyed() {
+        console.log('destroyed()')
+      },
+      methods: {
+        destroyVM() {
+          this.$destroy()
+        }
+      }
+    });
+  </script>
+</body>
