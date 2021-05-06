@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    [v-keycloak] {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <h2>用ref来获取element内容</h2></h2>
+    <p ref="content">atguigu.com</p>
+    <button @click="hint">提示</button>
+    <h2>用v-keycloak解决闪现问题</h2>
+    <p>{{msg}}</p>
+    <!-- v-keycloak属性会在解析后被移除 -->
+    <p v-keycloak>{{msg}}</p>
+  </div>
+  <script src="js/vue.js"></script>
+  <script>
+    alert('...');
+    new Vue({
+      el: '#app',
+      data: {
+        msg: 'atguigu.com'
+      },
+      methods: {
+        hint() {
+          alert(this.$refs.content.textContent)
+        }
+      }
+    });
+  </script>
+</body>
